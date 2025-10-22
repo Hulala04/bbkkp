@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard Admin - BBSPJIKKP</title>
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <style>
         :root {
             --primary-color: #007bff;
@@ -52,6 +53,7 @@
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             transition: all 0.3s ease;
+            overflow-y: auto;
         }
 
         .sidebar-header {
@@ -181,11 +183,19 @@
             margin-bottom: 1rem;
         }
 
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
         .recent-activity {
             background: white;
             border-radius: 15px;
             padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-height: 500px;
+            overflow-y: auto;
         }
 
         .activity-item {
@@ -209,6 +219,7 @@
             margin-right: 1rem;
             font-size: 0.9rem;
             color: white;
+            flex-shrink: 0;
         }
 
         .activity-content {
@@ -239,6 +250,33 @@
             background: linear-gradient(135deg, #0056b3 0%, var(--primary-color) 100%);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color) 0%, #1e7e34 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning-color) 0%, #e0a800 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, var(--info-color) 0%, #117a8b 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            color: white;
         }
 
         .user-dropdown {
@@ -303,16 +341,17 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="logo d-flex align-items-center">
-                <img src="{{ asset('images/balai-logo.png') }}" alt="BBSPJKKPP Logo" style="height: 30px; width: auto; margin-right: 10px;">
-                <span>BBSPJIKKP Admin</span>
+            <div class="logo">
+                <i class="fas fa-cogs me-2"></i>
+                BBSPJIKKP Admin
             </div>
         </div>
-        
+
         <nav class="sidebar-nav">
             <ul class="nav flex-column">
                 <li class="nav-item">
@@ -365,7 +404,7 @@
                 </button>
                 <h4 class="mb-0">Dashboard</h4>
             </div>
-            
+
             <div class="d-flex align-items-center">
                 <div class="user-dropdown">
                     <div class="user-avatar" data-bs-toggle="dropdown">
@@ -374,7 +413,9 @@
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profil</a></li>
                         <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Pengaturan</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li>
                             <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
                                 @csrf
@@ -435,35 +476,37 @@
                 <div class="col-lg-8 mb-4">
                     <div class="chart-card">
                         <h5 class="chart-title">Statistik Layanan</h5>
-                        <canvas id="servicesChart" height="100"></canvas>
+                        <div class="chart-container">
+                            <canvas id="servicesChart"></canvas>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
                     <div class="recent-activity">
                         <h5 class="chart-title">Aktivitas Terbaru</h5>
-                        
-                        @foreach($recentServices as $service)
-                        <div class="activity-item">
-                            <div class="activity-icon primary">
-                                <i class="fas fa-cogs"></i>
+
+                        @foreach ($recentServices as $service)
+                            <div class="activity-item">
+                                <div class="activity-icon primary" style="background: var(--primary-color);">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">{{ $service->name }}</div>
+                                    <div class="activity-time">{{ $service->created_at->diffForHumans() }}</div>
+                                </div>
                             </div>
-                            <div class="activity-content">
-                                <div class="activity-title">{{ $service->name }}</div>
-                                <div class="activity-time">{{ $service->created_at->diffForHumans() }}</div>
-                            </div>
-                        </div>
                         @endforeach
-                        
-                        @foreach($recentNews as $news)
-                        <div class="activity-item">
-                            <div class="activity-icon success">
-                                <i class="fas fa-newspaper"></i>
+
+                        @foreach ($recentNews as $news)
+                            <div class="activity-item">
+                                <div class="activity-icon success" style="background: var(--success-color);">
+                                    <i class="fas fa-newspaper"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">{{ $news->title }}</div>
+                                    <div class="activity-time">{{ $news->created_at->diffForHumans() }}</div>
+                                </div>
                             </div>
-                            <div class="activity-content">
-                                <div class="activity-title">{{ $news->title }}</div>
-                                <div class="activity-time">{{ $news->created_at->diffForHumans() }}</div>
-                            </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -508,55 +551,52 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Sidebar toggle for mobile
             const sidebarToggle = document.getElementById('sidebarToggle');
             const sidebar = document.getElementById('sidebar');
-            
+
             if (sidebarToggle) {
                 sidebarToggle.addEventListener('click', function() {
                     sidebar.classList.toggle('show');
                 });
             }
-            
-            // Services Chart
-            const ctx = document.getElementById('servicesChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Layanan Aktif', 'Layanan Non-Aktif'],
-                    datasets: [{
-                        data: [{{ $stats['services'] }}, 0],
-                        backgroundColor: [
-                            '#007bff',
-                            '#6c757d'
-                        ],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                padding: 20,
-                                usePointStyle: true
+
+            // Services Chart - FIXED VERSION
+            const ctx = document.getElementById('servicesChart');
+            if (ctx) {
+                const servicesChart = new Chart(ctx.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Layanan Aktif', 'Layanan Non-Aktif'],
+                        datasets: [{
+                            data: [{{ $stats['services'] }}, 0],
+                            backgroundColor: [
+                                '#007bff',
+                                '#6c757d'
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    padding: 20,
+                                    usePointStyle: true
+                                }
                             }
                         }
                     }
-                }
-            });
-            
-            // Auto-refresh stats every 30 seconds
-            setInterval(function() {
-                // You can add AJAX call here to refresh stats
-                console.log('Refreshing stats...');
-            }, 30000);
+                });
+            }
         });
     </script>
 </body>
+
 </html>

@@ -19,6 +19,62 @@
     <!-- Custom CSS -->
     <link href="{{ asset('css/frontend.css') }}" rel="stylesheet">
 
+    <style>
+        /* Mega Menu Styling */
+        .mega-menu {
+            padding: 25px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+
+        .dropdown-item-group {
+            padding: 10px;
+        }
+
+        .dropdown-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0d6efd;
+            padding: 8px 0;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 8px;
+            white-space: nowrap;
+        }
+
+        .dropdown-item {
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(13, 110, 253, 0.08);
+            color: #0d6efd;
+            padding-left: 16px;
+        }
+
+        .navbar-nav .dropdown-menu {
+            animation: fadeInDown 0.3s ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
     @stack('styles')
 </head>
 
@@ -31,20 +87,36 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-phone me-2"></i>
-                            <span>+62 21 1234 5678</span>
-                            <i class="fas fa-envelope ms-3 me-2"></i>
-                            <span>info@bbkkp.com</span>
+                            <!-- Logo di Top Bar -->
+                            <img src="{{ asset('images/logo.png') }}" alt="BBSPJIKKP Logo"
+                                style="height: 35px; margin-right: 15px;">
+                            <span class="fw-semibold">BBSPJIKKP</span>
                         </div>
                     </div>
                     <div class="col-md-6 text-end">
-                        <div class="d-flex align-items-center justify-content-end">
-                            <div class="language-selector me-3">
-                                <i class="fas fa-globe me-1"></i>
-                                <span>English</span>
+                        <div class="d-flex align-items-center justify-content-end gap-3">
+                            <!-- Language Selector -->
+                            <div class="language-selector dropdown">
+                                <button class="btn btn-link text-white text-decoration-none dropdown-toggle p-0"
+                                    type="button" id="languageDropdown" data-bs-toggle="dropdown">
+                                    <i class="fas fa-globe me-1"></i>
+                                    <span id="currentLang">{{ app()->getLocale() == 'id' ? 'ID' : 'English' }}</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#" onclick="changeLanguage('id')"><img
+                                                src="{{ asset('images/flag-id.png') }}" alt="ID"
+                                                style="width: 20px; margin-right: 8px;">Indonesia</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')"><img
+                                                src="{{ asset('images/flag-en.png') }}" alt="EN"
+                                                style="width: 20px; margin-right: 8px;">English</a></li>
+                                </ul>
                             </div>
-                            <a href="#" class="btn btn-outline-light btn-sm me-2">Login</a>
-                            <a href="#" class="btn btn-danger btn-sm">Register</a>
+
+                            <!-- Hubungi Kami Button -->
+                            <a href="#" class="btn btn-outline-light btn-sm rounded-pill px-4">
+                                <i class="fas fa-phone me-2"></i>
+                                <span id="contactText">Hubungi Kami</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -71,49 +143,114 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Beranda</a>
+                            <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ route('home') }}">
+                                {{ __('Beranda') }}
+                            </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="layananDropdown" role="button"
                                 data-bs-toggle="dropdown">
-                                Layanan
+                                {{ __('Layanan') }}
                             </a>
-                            <div class="dropdown-menu mega-menu">
+                            <div class="dropdown-menu mega-menu" style="min-width: 800px;">
                                 <div class="container">
                                     <div class="row">
-                                        @if (isset($services) && $services->count() > 0)
-                                            @foreach ($services as $service)
-                                                <div class="col-md-4">
-                                                    <div class="dropdown-item-group">
-                                                        <h6 class="dropdown-header">
-                                                            <i class="{{ $service->icon }} me-2"></i>
-                                                            {{ $service->name }}
-                                                        </h6>
-                                                        @if ($service->children->count() > 0)
-                                                            @foreach ($service->children as $child)
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('services.show', $child->slug) }}">
-                                                                    {{ $child->name }}
-                                                                </a>
-                                                            @endforeach
-                                                        @else
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('services.show', $service->slug) }}">
-                                                                Lihat Detail
-                                                            </a>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        @else
-                                            <div class="col-12">
-                                                <div class="dropdown-item-group">
-                                                    <h6 class="dropdown-header">Layanan</h6>
-                                                    <a class="dropdown-item" href="{{ route('services.index') }}">Lihat
-                                                        Semua Layanan</a>
-                                                </div>
+                                        <div class="col-md-3">
+                                            <div class="dropdown-item-group">
+                                                <h6 class="dropdown-header">
+                                                    <i class="fas fa-flask me-2"></i>{{ __('Pengujian') }}
+                                                </h6>
+                                                <a class="dropdown-item" href="#">{{ __('Lihat Detail') }}</a>
                                             </div>
-                                        @endif
+                                            <div class="dropdown-item-group mt-3">
+                                                <h6 class="dropdown-header">
+                                                    <i class="fas fa-cog me-2"></i>{{ __('Kalibrasi') }}
+                                                </h6>
+                                                <a class="dropdown-item" href="#">{{ __('Lihat Detail') }}</a>
+                                            </div>
+                                            <div class="dropdown-item-group mt-3">
+                                                <h6 class="dropdown-header">
+                                                    <i class="fas fa-check-circle me-2"></i>{{ __('Inspeksi') }}
+                                                </h6>
+                                                <a class="dropdown-item" href="#">{{ __('Lihat Detail') }}</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="dropdown-item-group">
+                                                <h6 class="dropdown-header">
+                                                    <i class="fas fa-certificate me-2"></i>{{ __('Sertifikasi') }}
+                                                </h6>
+                                                <a class="dropdown-item"
+                                                    href="#">{{ __('Sertifikasi Produk (SPPT SNI)') }}</a>
+                                                <a class="dropdown-item" href="#">SMM</a>
+                                                <a class="dropdown-item" href="#">SMK3</a>
+                                                <a class="dropdown-item" href="#">SML</a>
+                                                <a class="dropdown-item" href="#">SIH</a>
+                                                <a class="dropdown-item"
+                                                    href="#">{{ __('Sertifikasi Personil') }}</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="dropdown-item-group">
+                                                <h6 class="dropdown-header">
+                                                    <i
+                                                        class="fas fa-chalkboard-teacher me-2"></i>{{ __('Bimbingan Teknis / Konsultansi') }}
+                                                </h6>
+                                                <a class="dropdown-item"
+                                                    href="#">{{ __('Audit Teknologi') }}</a>
+                                                <a class="dropdown-item" href="#">INDI 4.0</a>
+                                                <a class="dropdown-item" href="#">TKDN</a>
+                                                <a class="dropdown-item"
+                                                    href="#">{{ __('Sistem Manajemen (SNI/ISO)') }}</a>
+                                                <a class="dropdown-item"
+                                                    href="#">{{ __('Penyusunan Dokumen') }}</a>
+                                            </div>
+
+                                            <div class="dropdown-item-group mt-3">
+                                                <h6 class="dropdown-header">
+                                                    <i
+                                                        class="fas fa-check-double me-2"></i>{{ __('Verifikasi dan Validasi') }}
+                                                </h6>
+                                                <a class="dropdown-item" href="#">GRK</a>
+                                                <a class="dropdown-item" href="#">TKDN</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="dropdown-item-group">
+                                                <h6 class="dropdown-header">
+                                                    <i class="fas fa-chart-line me-2"></i>{{ __('Uji Profisiensi') }}
+                                                </h6>
+                                                <a class="dropdown-item" href="#">{{ __('Kalibrasi') }}</a>
+                                                <a class="dropdown-item" href="#">{{ __('Pengujian') }}</a>
+                                            </div>
+
+                                            <div class="dropdown-item-group mt-3">
+                                                <h6 class="dropdown-header">
+                                                    <i
+                                                        class="fas fa-graduation-cap me-2"></i>{{ __('Pelatihan Teknis') }}
+                                                </h6>
+                                                <a class="dropdown-item" href="#">{{ __('Lihat Detail') }}</a>
+                                            </div>
+
+                                            <div class="dropdown-item-group mt-3">
+                                                <h6 class="dropdown-header">
+                                                    <i
+                                                        class="fas fa-industry me-2"></i>{{ __('Produsen Bahan Acuan') }}
+                                                </h6>
+                                                <a class="dropdown-item" href="#">{{ __('Lihat Detail') }}</a>
+                                            </div>
+
+                                            <div class="dropdown-item-group mt-3">
+                                                <h6 class="dropdown-header">
+                                                    <i class="fas fa-book me-2"></i>{{ __('Edukasi') }}
+                                                </h6>
+                                                <a class="dropdown-item" href="#">{{ __('Magang / PKL') }}</a>
+                                                <a class="dropdown-item" href="#">{{ __('Kunjungan') }}</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -121,51 +258,71 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="standarDropdown" role="button"
                                 data-bs-toggle="dropdown">
-                                Standar Pelayanan
+                                {{ __('Standar Pelayanan') }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Standar Pelayanan</a></li>
-                                <li><a class="dropdown-item" href="#">Maklumat Pelayanan</a></li>
-                                <li><a class="dropdown-item" href="#">Tarif Layanan</a></li>
-                                <li><a class="dropdown-item" href="#">Tarif Percepatan</a></li>
-                                <li><a class="dropdown-item" href="#">SPM</a></li>
-                                <li><a class="dropdown-item" href="#">Survey Layanan Pelanggan</a></li>
-                                <li><a class="dropdown-item" href="#">IKM</a></li>
-                                <li><a class="dropdown-item" href="#">Kontak</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-file-contract me-2"></i>{{ __('Standar Pelayanan') }}</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-bullhorn me-2"></i>{{ __('Maklumat Pelayanan') }}</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-dollar-sign me-2"></i>{{ __('Tarif Layanan') }}</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-fast-forward me-2"></i>{{ __('Tarif Percepatan') }}</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-chart-bar me-2"></i>{{ __('Standar Pelayanan Minimum (SPM)') }}</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-poll me-2"></i>{{ __('Survey Layanan Pelanggan') }}</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-smile me-2"></i>{{ __('Indeks Kepuasan Masyarakat') }}</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-phone-alt me-2"></i>{{ __('Kontak') }}</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="mediaDropdown" role="button"
                                 data-bs-toggle="dropdown">
-                                Media & Informasi
+                                {{ __('Media & Informasi') }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Keterbukaan Informasi Publik</a></li>
-                                <li><a class="dropdown-item" href="#">BBSPJIKKP News</a></li>
-                                <li><a class="dropdown-item" href="#">Publikasi</a></li>
-                                <li><a class="dropdown-item" href="#">Pengumuman</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-info-circle me-2"></i>{{ __('Keterbukaan Informasi Publik') }}</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-newspaper me-2"></i>BBSPJIKKP News</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-book-open me-2"></i>{{ __('Publikasi') }}</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-bell me-2"></i>{{ __('Pengumuman') }}</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="tentangDropdown" role="button"
                                 data-bs-toggle="dropdown">
-                                Tentang Kami
+                                {{ __('Tentang Kami') }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Tonggak Sejarah</a></li>
-                                <li><a class="dropdown-item" href="#">Profil Singkat</a></li>
-                                <li><a class="dropdown-item" href="#">Profil Pejabat</a></li>
-                                <li><a class="dropdown-item" href="#">Struktur Organisasi</a></li>
-                                <li><a class="dropdown-item" href="#">Makna Logo</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-history me-2"></i>{{ __('Tonggak Sejarah') }}</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-building me-2"></i>{{ __('Profil Singkat BBSPJIKKP') }}</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-user-tie me-2"></i>{{ __('Profil Pejabat') }}</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-sitemap me-2"></i>{{ __('Struktur Organisasi') }}</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fas fa-shield-alt me-2"></i>{{ __('Makna Logo') }}</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Halal Center</a>
-
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Daftar Layanan</a>
-
                         </li>
                     </ul>
                 </div>
@@ -200,51 +357,65 @@
                         <div class="contact-info">
                             <p class="mb-1"><i class="fas fa-phone me-2"></i> +62 21 1234 5678</p>
                             <p class="mb-1"><i class="fas fa-envelope me-2"></i> info@bbkkp.com</p>
-                            <p class="mb-0"><i class="fas fa-clock me-2"></i> Senin - Jumat: 08:00 - 16:00</p>
+                            <p class="mb-0"><i class="fas fa-clock me-2"></i>
+                                {{ __('Senin - Jumat: 08:00 - 16:00') }}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-2 col-md-6 mb-4">
-                    <h6 class="text-primary mb-3">Menu</h6>
+                    <h6 class="text-primary mb-3">{{ __('Menu') }}</h6>
                     <ul class="list-unstyled">
-                        <li><a href="{{ route('home') }}" class="text-light text-decoration-none">Beranda</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Tentang Kami</a></li>
+                        <li><a href="{{ route('home') }}"
+                                class="text-light text-decoration-none">{{ __('Beranda') }}</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">{{ __('Tentang Kami') }}</a>
+                        </li>
                         <li><a href="{{ route('services.index') }}"
-                                class="text-light text-decoration-none">Layanan</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Media & Informasi</a></li>
+                                class="text-light text-decoration-none">{{ __('Layanan') }}</a></li>
+                        <li><a href="#"
+                                class="text-light text-decoration-none">{{ __('Media & Informasi') }}</a></li>
                         <li><a href="#" class="text-light text-decoration-none">Halal Center</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <h6 class="text-primary mb-3">Layanan</h6>
+                    <h6 class="text-primary mb-3">{{ __('Layanan') }}</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">Pengujian</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Kalibrasi</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Sertifikasi</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Bimbingan Teknis</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Inspeksi</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Verifikasi & Validasi</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Uji Profisiensi</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Pelatihan Teknis</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Produsen Bahan Acuan</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Edukasi</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">{{ __('Pengujian') }}</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">{{ __('Kalibrasi') }}</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">{{ __('Sertifikasi') }}</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-light text-decoration-none">{{ __('Bimbingan Teknis') }}</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">{{ __('Inspeksi') }}</a></li>
+                        <li><a href="#"
+                                class="text-light text-decoration-none">{{ __('Verifikasi & Validasi') }}</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">{{ __('Uji Profisiensi') }}</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-light text-decoration-none">{{ __('Pelatihan Teknis') }}</a></li>
+                        <li><a href="#"
+                                class="text-light text-decoration-none">{{ __('Produsen Bahan Acuan') }}</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">{{ __('Edukasi') }}</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <h6 class="text-primary mb-3">Informasi</h6>
+                    <h6 class="text-primary mb-3">{{ __('Informasi') }}</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">Standar Pelayanan</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Maklumat Pelayanan</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Tarif Layanan</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Tarif Percepatan</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">SPM</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Survey Layanan Pelanggan</a>
+                        <li><a href="#"
+                                class="text-light text-decoration-none">{{ __('Standar Pelayanan') }}</a></li>
+                        <li><a href="#"
+                                class="text-light text-decoration-none">{{ __('Maklumat Pelayanan') }}</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">{{ __('Tarif Layanan') }}</a>
                         </li>
+                        <li><a href="#"
+                                class="text-light text-decoration-none">{{ __('Tarif Percepatan') }}</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">SPM</a></li>
+                        <li><a href="#"
+                                class="text-light text-decoration-none">{{ __('Survey Layanan Pelanggan') }}</a></li>
                         <li><a href="#" class="text-light text-decoration-none">IKM</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Kontak</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">{{ __('Kontak') }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -253,7 +424,7 @@
 
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <p class="mb-0">&copy; 2025 BBSPJIKKP. All rights reserved.</p>
+                    <p class="mb-0">&copy; 2025 BBSPJIKKP. {{ __('All rights reserved.') }}</p>
                 </div>
                 <div class="col-md-6 text-end">
                     <div class="social-links">
@@ -272,6 +443,41 @@
 
     <!-- Custom JS -->
     <script src="{{ asset('js/frontend.js') }}"></script>
+
+    <script>
+        // Language Switcher
+        function changeLanguage(lang) {
+            // Simpan ke localStorage
+            localStorage.setItem('language', lang);
+
+            // Update tampilan bahasa
+            const currentLangText = lang === 'id' ? 'ID' : 'English';
+            document.getElementById('currentLang').textContent = currentLangText;
+
+            // Update text Hubungi Kami
+            const contactText = lang === 'id' ? 'Hubungi Kami' : 'Contact Us';
+            document.getElementById('contactText').textContent = contactText;
+
+            // Kirim request ke server untuk ganti bahasa
+            fetch(`/language/${lang}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                }
+            }).then(() => {
+                // Reload halaman
+                location.reload();
+            });
+        }
+
+        // Load bahasa dari localStorage saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('language') || 'id';
+            const currentLangText = savedLang === 'id' ? 'ID' : 'English';
+            document.getElementById('currentLang').textContent = currentLangText;
+        });
+    </script>
 
     @stack('scripts')
 </body>

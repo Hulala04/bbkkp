@@ -14,8 +14,8 @@
                                 style="background-image: url('{{ asset('storage/' . $image->image_path) }}');">
                                 <div class="hero-overlay"></div>
                                 <div class="container">
-                                    <div class="row align-items-center min-vh-100">
-                                        <div class="col-lg-6">
+                                    <div class="row align-items-center" style="min-height: 100vh;">
+                                        <div class="col-lg-8">
                                             <div class="hero-content text-white">
                                                 <h1 class="hero-title mb-4 animate-fade-in">
                                                     BALAI BESAR STANDARDISASI DAN PELAYANAN JASA INDUSTRI KULIT, KARET DAN
@@ -40,8 +40,8 @@
                         <div class="hero-slide" style="background-image: url('{{ asset('images/hero-default.jpg') }}');">
                             <div class="hero-overlay"></div>
                             <div class="container">
-                                <div class="row align-items-center min-vh-100">
-                                    <div class="col-lg-6">
+                                <div class="row align-items-center" style="min-height: 100vh;">
+                                    <div class="col-lg-8">
                                         <div class="hero-content text-white">
                                             <h1 class="hero-title mb-4 animate-fade-in">
                                                 BALAI BESAR STANDARDISASI DAN PELAYANAN JASA INDUSTRI KULIT, KARET DAN
@@ -74,68 +74,72 @@
         </div>
     </section>
 
-<!-- About Section -->
-<section class="about-section py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="about-content">
-                    <div class="section-icon mb-4">
-                        <i class="fas fa-cogs text-danger"></i>
+    <!-- About Section -->
+    <section class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="about-content">
+                        <div class="section-icon mb-4">
+                            <i class="fas fa-cogs text-danger"></i>
+                        </div>
+                        <h2 class="section-title mb-4">Dari Pengujian ke Kepercayaan</h2>
+                        <p class="section-description mb-4">
+                            BBSPJIKKP berkomitmen untuk memberikan pelayanan terbaik dalam bidang standardisasi dan
+                            pelayanan jasa industri.
+                            Dengan pengalaman bertahun-tahun, kami telah menjadi mitra terpercaya bagi industri dalam
+                            negeri.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-lg">Baca Selengkapnya</a>
                     </div>
-                    <h2 class="section-title mb-4">Dari Pengujian ke Kepercayaan</h2>
-                    <p class="section-description mb-4">
-                        BBSPJIKKP berkomitmen untuk memberikan pelayanan terbaik dalam bidang standardisasi dan pelayanan jasa industri. 
-                        Dengan pengalaman bertahun-tahun, kami telah menjadi mitra terpercaya bagi industri dalam negeri.
-                    </p>
-                    <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="about-image">
-                    <img src="{{ asset('images/about-building.jpg') }}" alt="Gedung BBSPJIKKP" class="img-fluid rounded shadow">
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <img src="{{ asset('images/about-building.jpg') }}" alt="Gedung BBSPJIKKP"
+                            class="img-fluid rounded shadow-lg">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Quick Info Section -->
     <section class="quick-info-section py-5 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <div class="info-card h-100">
-                        <div class="card-body text-center">
+                    <div class="info-card card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
                             <div class="info-icon mb-3">
-                                <i class="fas fa-file-alt text-primary"></i>
+                                <i class="fas fa-file-alt text-primary" style="font-size: 3rem;"></i>
                             </div>
-                            <h5 class="card-title">Standar Pelayanan</h5>
-                            <p class="card-text">Informasi standar pelayanan yang kami berikan kepada masyarakat</p>
+                            <h5 class="card-title fw-bold mb-3">Standar Pelayanan</h5>
+                            <p class="card-text text-muted">Informasi standar pelayanan yang kami berikan kepada masyarakat
+                            </p>
                             <a href="#" class="btn btn-outline-primary">Lihat Detail</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <div class="info-card h-100">
-                        <div class="card-body text-center">
+                    <div class="info-card card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
                             <div class="info-icon mb-3">
-                                <i class="fas fa-calendar-alt text-primary"></i>
+                                <i class="fas fa-calendar-alt text-primary" style="font-size: 3rem;"></i>
                             </div>
-                            <h5 class="card-title">Maklumat Pelayanan</h5>
-                            <p class="card-text">Informasi lengkap tentang prosedur dan ketentuan pelayanan</p>
+                            <h5 class="card-title fw-bold mb-3">Maklumat Pelayanan</h5>
+                            <p class="card-text text-muted">Informasi lengkap tentang prosedur dan ketentuan pelayanan</p>
                             <a href="#" class="btn btn-outline-primary">Lihat Detail</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <div class="info-card h-100">
-                        <div class="card-body text-center">
+                    <div class="info-card card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
                             <div class="info-icon mb-3">
-                                <i class="fas fa-list-check text-primary"></i>
+                                <i class="fas fa-list-check text-primary" style="font-size: 3rem;"></i>
                             </div>
-                            <h5 class="card-title">Tarif Layanan</h5>
-                            <p class="card-text">Daftar tarif layanan yang transparan dan kompetitif</p>
+                            <h5 class="card-title fw-bold mb-3">Tarif Layanan</h5>
+                            <p class="card-text text-muted">Daftar tarif layanan yang transparan dan kompetitif</p>
                             <a href="#" class="btn btn-outline-primary">Lihat Detail</a>
                         </div>
                     </div>
@@ -149,21 +153,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-5">
-                    <h2 class="section-title">Layanan Kami</h2>
-                    <p class="section-subtitle">Berbagai layanan profesional untuk mendukung industri Anda</p>
+                    <h2 class="section-title fw-bold">Layanan Kami</h2>
+                    <p class="section-subtitle text-muted">Berbagai layanan profesional untuk mendukung industri Anda</p>
                 </div>
             </div>
 
             <div class="row">
                 @foreach ($services as $service)
                     <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="service-card h-100">
-                            <div class="card-body text-center">
+                        <div class="service-card card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center p-4">
                                 <div class="service-icon mb-3">
-                                    <i class="{{ $service->icon }}"></i>
+                                    <i class="{{ $service->icon }}" style="font-size: 3.5rem; color: #0d6efd;"></i>
                                 </div>
-                                <h5 class="service-title">{{ $service->name }}</h5>
-                                <p class="service-description">{{ $service->description }}</p>
+                                <h5 class="service-title fw-bold mb-3">{{ $service->name }}</h5>
+                                <p class="service-description text-muted">{{ $service->description }}</p>
                                 <a href="{{ route('services.show', $service->slug) }}" class="btn btn-primary btn-sm">
                                     Lihat Detail
                                 </a>
@@ -179,15 +183,15 @@
     <section class="cta-section py-5 bg-primary text-white">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h3 class="cta-title mb-3">Ingin Mendaftar Layanan Jasa Industri?</h3>
+                <div class="col-lg-8 mb-3 mb-lg-0">
+                    <h3 class="cta-title mb-3 fw-bold">Ingin Mendaftar Layanan Jasa Industri?</h3>
                     <p class="cta-description mb-0">
                         Dapatkan layanan terbaik dari BBSPJIKKP untuk mendukung bisnis dan industri Anda.
                         Tim profesional kami siap membantu Anda.
                     </p>
                 </div>
-                <div class="col-lg-4 text-end">
-                    <a href="#" class="btn btn-light btn-lg">Daftar Sekarang</a>
+                <div class="col-lg-4 text-lg-end text-center">
+                    <a href="#" class="btn btn-light btn-lg px-5">Daftar Sekarang</a>
                 </div>
             </div>
         </div>
@@ -198,27 +202,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-5">
-                    <h2 class="section-title">Berita & Publikasi</h2>
-                    <p class="section-subtitle">Informasi terbaru dan publikasi dari BBSPJIKKP</p>
+                    <h2 class="section-title fw-bold">Berita & Publikasi</h2>
+                    <p class="section-subtitle text-muted">Informasi terbaru dan publikasi dari BBSPJIKKP</p>
                 </div>
             </div>
 
             <div class="row">
                 @if ($featuredNews->count() > 0)
                     <div class="col-lg-6 mb-4">
-                        <div class="featured-news-card">
-                            <div class="news-image">
+                        <div class="featured-news-card card border-0 shadow-sm h-100">
+                            <div class="news-image" style="height: 300px; overflow: hidden;">
                                 <img src="{{ asset('storage/' . $featuredNews->first()->featured_image) }}"
-                                    alt="{{ $featuredNews->first()->title }}" class="img-fluid">
+                                    alt="{{ $featuredNews->first()->title }}" class="img-fluid w-100 h-100"
+                                    style="object-fit: cover;">
                             </div>
-                            <div class="news-content">
-                                <div class="news-meta">
+                            <div class="news-content p-4">
+                                <div class="news-meta mb-3">
+                                    <span class="news-date text-muted me-3"><i
+                                            class="far fa-calendar me-1"></i>{{ $featuredNews->first()->published_at->format('d M Y') }}</span>
                                     <span
-                                        class="news-date">{{ $featuredNews->first()->published_at->format('d M Y') }}</span>
-                                    <span class="news-category">{{ ucfirst($featuredNews->first()->type) }}</span>
+                                        class="news-category badge bg-primary">{{ ucfirst($featuredNews->first()->type) }}</span>
                                 </div>
-                                <h4 class="news-title">{{ $featuredNews->first()->title }}</h4>
-                                <p class="news-excerpt">{{ $featuredNews->first()->excerpt }}</p>
+                                <h4 class="news-title fw-bold mb-3">{{ $featuredNews->first()->title }}</h4>
+                                <p class="news-excerpt text-muted">{{ $featuredNews->first()->excerpt }}</p>
                                 <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
                             </div>
                         </div>
@@ -229,21 +235,23 @@
                     <div class="row">
                         @foreach ($latestNews->take(3) as $news)
                             <div class="col-12 mb-3">
-                                <div class="news-item-card">
-                                    <div class="row">
+                                <div class="news-item-card card border-0 shadow-sm">
+                                    <div class="row g-0">
                                         <div class="col-4">
-                                            <div class="news-thumbnail">
+                                            <div class="news-thumbnail" style="height: 120px; overflow: hidden;">
                                                 <img src="{{ asset('storage/' . $news->featured_image) }}"
-                                                    alt="{{ $news->title }}" class="img-fluid">
+                                                    alt="{{ $news->title }}" class="img-fluid w-100 h-100"
+                                                    style="object-fit: cover;">
                                             </div>
                                         </div>
                                         <div class="col-8">
-                                            <div class="news-content">
-                                                <div class="news-meta">
-                                                    <span
-                                                        class="news-date">{{ $news->published_at->format('d M Y') }}</span>
+                                            <div class="news-content p-3">
+                                                <div class="news-meta mb-2">
+                                                    <span class="news-date text-muted small"><i
+                                                            class="far fa-calendar me-1"></i>{{ $news->published_at->format('d M Y') }}</span>
                                                 </div>
-                                                <h6 class="news-title">{{ $news->title }}</h6>
+                                                <h6 class="news-title fw-bold mb-2">{{ Str::limit($news->title, 60) }}
+                                                </h6>
                                                 <a href="#" class="btn btn-sm btn-outline-primary">Baca
                                                     Selengkapnya</a>
                                             </div>
@@ -264,17 +272,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center mb-5">
-                        <h2 class="section-title">Mitra Kami</h2>
-                        <p class="section-subtitle">Organisasi dan perusahaan yang mempercayai layanan kami</p>
+                        <h2 class="section-title fw-bold">Mitra Kami</h2>
+                        <p class="section-subtitle text-muted">Organisasi dan perusahaan yang mempercayai layanan kami</p>
                     </div>
                 </div>
 
-                <div class="row align-items-center">
+                <div class="row align-items-center justify-content-center">
                     @foreach ($partners as $partner)
                         <div class="col-lg-2 col-md-3 col-6 mb-4">
-                            <div class="partner-logo text-center">
+                            <div class="partner-logo text-center p-3 bg-white rounded shadow-sm">
                                 <img src="{{ asset('storage/' . $partner->logo_path) }}" alt="{{ $partner->name }}"
-                                    class="img-fluid">
+                                    class="img-fluid"
+                                    style="max-height: 80px; filter: grayscale(100%); transition: all 0.3s;">
                             </div>
                         </div>
                     @endforeach
@@ -286,6 +295,7 @@
 
 @push('styles')
     <style>
+        /* Hero Section */
         .hero-section {
             min-height: 100vh;
         }
@@ -304,7 +314,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 100%);
         }
 
         .hero-content {
@@ -313,82 +323,117 @@
         }
 
         .hero-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            opacity: 0.95;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
         }
 
-.section-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #2c3e50;
-}
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
 
-.section-subtitle {
-    color: #6c757d;
-    font-size: 1.1rem;
-}
+        .carousel-control-prev {
+            left: 30px;
+        }
 
+        .carousel-control-next {
+            right: 30px;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* About Section */
+        .section-icon i {
+            font-size: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Cards */
+        .info-card,
         .service-card {
-            border: none;
+            transition: all 0.3s ease;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        .info-card:hover,
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
         }
 
         .service-icon {
-            font-size: 3rem;
-            color: #007bff;
+            transition: all 0.3s ease;
         }
 
-        .info-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
         }
 
-        .info-card:hover {
-            transform: translateY(-3px);
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
         }
 
-        .info-icon {
-            font-size: 2.5rem;
-        }
-
-        .news-card {
-            border: none;
+        /* News Cards */
+        .featured-news-card,
+        .news-item-card {
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .featured-news-card:hover,
+        .news-item-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .featured-news-card:hover .news-image img {
+            transform: scale(1.05);
         }
 
         .news-image img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+            transition: all 0.3s ease;
         }
 
-        .partner-logo img {
-            max-height: 80px;
-            filter: grayscale(100%);
-            transition: filter 0.3s ease;
-        }
-
+        /* Partners */
         .partner-logo:hover img {
-            filter: grayscale(0%);
+            filter: grayscale(0%) !important;
         }
 
+        /* Animations */
         .animate-fade-in {
             animation: fadeIn 1s ease-in-out;
         }
@@ -413,34 +458,50 @@
             }
         }
 
-        .cta-section {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
         }
 
-        .cta-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
 
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 1.8rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.5rem;
-    }
-}
-</style>
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 40px;
+                height: 40px;
+            }
+
+            .carousel-control-prev {
+                left: 15px;
+            }
+
+            .carousel-control-next {
+                right: 15px;
+            }
+        }
+    </style>
 @endpush
 
 @push('scripts')
     <script>
-        // Smooth scrolling for anchor links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -454,7 +515,7 @@
             });
         });
 
-        // Add animation on scroll
+        // Animation on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -468,8 +529,7 @@
             });
         }, observerOptions);
 
-        // Observe all service cards and info cards
-        document.querySelectorAll('.service-card, .info-card, .news-card').forEach(card => {
+        document.querySelectorAll('.service-card, .info-card, .news-item-card').forEach(card => {
             observer.observe(card);
         });
     </script>
