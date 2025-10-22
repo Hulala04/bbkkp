@@ -72,23 +72,34 @@
 <!-- About Section -->
 <section class="about-section py-5">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="about-content">
-                    <div class="section-icon mb-4">
-                        <i class="fas fa-cogs text-danger"></i>
+                    <div class="about-layout">
+                        <!-- Logo on the left -->
+                        <div class="about-logo-section">
+                            <div class="about-logo">
+                                <img src="{{ asset('images/balai-logo.png') }}" alt="BBSPJKKPP Logo" style="width: 374px; height: 356px;">
+                            </div>
+                            <!-- Profile button below logo -->
+                            <div class="about-actions">
+                                <a href="#" class="btn btn-primary btn-lg">Profil BBKKP</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Text content on the right -->
+                        <div class="about-text-section">
+                            <h2 class="section-title mb-3">Dari Pengujian ke Kepercayaan</h2>
+                            <h3 class="section-subtitle mb-4">
+                                Menjaga Mutu, Mendukung Daya Saing <span class="text-danger">Industri</span>
+                            </h3>
+                            
+                            <!-- Mission Statement -->
+                            <p class="section-description">
+                                Menjadi balai besar yang akuntabel, kolaboratif dan berorientasi pelayanan dalam mewujudkan industri nasional bidang kulit, karet, dan plastik yang mandiri dan berdaya saing.
+                            </p>
+                        </div>
                     </div>
-                    <h2 class="section-title mb-4">Dari Pengujian ke Kepercayaan</h2>
-                    <p class="section-description mb-4">
-                        BBSPJIKKP berkomitmen untuk memberikan pelayanan terbaik dalam bidang standardisasi dan pelayanan jasa industri. 
-                        Dengan pengalaman bertahun-tahun, kami telah menjadi mitra terpercaya bagi industri dalam negeri.
-                    </p>
-                    <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="about-image">
-                    <img src="{{ asset('images/about-building.jpg') }}" alt="Gedung BBSPJIKKP" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
@@ -313,15 +324,71 @@
 }
 
 .section-title {
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 2.5rem;
+    font-weight: 700;
     color: #2c3e50;
+    line-height: 1.2;
 }
 
 .section-subtitle {
-    color: #6c757d;
-    font-size: 1.1rem;
+    color: #2c3e50;
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.3;
 }
+
+.about-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.about-logo-section {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 374px;
+}
+
+.about-logo {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.about-text-section {
+    flex: 1;
+    min-width: 0;
+    margin-left: -1rem;
+    padding-left: 1rem;
+    margin-top: 5rem;
+}
+
+.section-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #495057;
+    margin: 0;
+}
+
+.about-actions .btn {
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.about-actions .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.about-actions {
+    margin-top: 10rem;
+}
+
+
 
 .service-card {
     border: none;
@@ -421,6 +488,29 @@
     
     .section-title {
         font-size: 1.5rem;
+    }
+    
+    .about-layout {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .about-logo-section {
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .about-logo img {
+        width: 200px !important;
+        height: auto !important;
+        max-width: 100%;
+    }
+    
+    .about-text-section {
+        text-align: center;
+        margin-left: 0;
+        padding-left: 0;
     }
 }
 </style>

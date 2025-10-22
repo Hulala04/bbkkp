@@ -307,9 +307,9 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="logo">
-                <i class="fas fa-cogs me-2"></i>
-                BBSPJIKKP Admin
+            <div class="logo d-flex align-items-center">
+                <img src="{{ asset('images/balai-logo.png') }}" alt="BBSPJKKPP Logo" style="height: 30px; width: auto; margin-right: 10px;">
+                <span>BBSPJIKKP Admin</span>
             </div>
         </div>
         

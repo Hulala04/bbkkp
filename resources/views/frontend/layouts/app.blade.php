@@ -29,10 +29,8 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="d-flex align-items-center">
-                            <i class="fas fa-phone me-2"></i>
-                            <span>+62 21 1234 5678</span>
-                            <i class="fas fa-envelope ms-3 me-2"></i>
-                            <span>info@bbkkp.com</span>
+                            
+                          
                         </div>
                     </div>
                     <div class="col-md-6 text-end">
@@ -41,8 +39,8 @@
                                 <i class="fas fa-globe me-1"></i>
                                 <span>English</span>
                             </div>
-                            <a href="#" class="btn btn-outline-light btn-sm me-2">Login</a>
-                            <a href="#" class="btn btn-danger btn-sm">Register</a>
+                            <a href="#" class="btn btn-outline-light btn-sm me-2">Hubungi Kami</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -54,7 +52,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
                     <div class="logo-icon me-3">
-                        <i class="fas fa-cogs text-primary"></i>
+                        <img src="{{ asset('images/balai-logo.png') }}" alt="BBSPJKKPP Logo" style="height: 50px; width: auto;">
                     </div>
                     <div class="logo-text">
                         <h4 class="mb-0 text-primary fw-bold">BBSPJIKKP</h4>
@@ -172,7 +170,7 @@
                     <div class="footer-brand">
                         <div class="d-flex align-items-center mb-3">
                             <div class="logo-icon me-3">
-                                <i class="fas fa-cogs text-primary"></i>
+                                <img src="{{ asset('images/balai-logo.png') }}" alt="BBSPJKKPP Logo" style="height: 40px; width: auto;">
                             </div>
                             <div class="logo-text">
                                 <h5 class="mb-0 text-primary fw-bold">BBSPJIKKP</h5>
