@@ -21,5 +21,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        // Seed services and admin
+        $this->call([
+            ServiceSeeder::class,
+            AdminSeeder::class,
+        ]);
     }
 }
