@@ -225,7 +225,7 @@
                                 </div>
                                 <h4 class="news-title fw-bold mb-3">{{ $featuredNews->first()->title }}</h4>
                                 <p class="news-excerpt text-muted">{{ $featuredNews->first()->excerpt }}</p>
-                                <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
+                                <a href="{{ route('news.show', $featuredNews->first()->slug) }}" class="btn btn-primary">Baca Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -250,9 +250,12 @@
                                                     <span class="news-date text-muted small"><i
                                                             class="far fa-calendar me-1"></i>{{ $news->published_at->format('d M Y') }}</span>
                                                 </div>
-                                                <h6 class="news-title fw-bold mb-2">{{ Str::limit($news->title, 60) }}
+                                                <h6 class="news-title fw-bold mb-2">
+                                                    <a href="{{ route('news.show', $news->slug) }}" class="text-decoration-none text-dark">
+                                                        {{ Str::limit($news->title, 60) }}
+                                                    </a>
                                                 </h6>
-                                                <a href="#" class="btn btn-sm btn-outline-primary">Baca
+                                                <a href="{{ route('news.show', $news->slug) }}" class="btn btn-sm btn-outline-primary">Baca
                                                     Selengkapnya</a>
                                             </div>
                                         </div>

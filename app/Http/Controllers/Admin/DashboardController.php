@@ -7,37 +7,43 @@ use App\Models\Service;
 use App\Models\News;
 use App\Models\Gallery;
 use App\Models\Partner;
-use App\Models\Admin;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $stats = [
-            'services' => 0,
-            'news' => 0,
-            'galleries' => 0,
-            'partners' => 0,
-            'admins' => 0,
-        ];
-        
-        $recentServices = collect();
-        $recentNews = collect();
-        
         try {
-            $stats['services'] = Service::count();
-            $stats['news'] = News::count();
-            $stats['galleries'] = Gallery::count();
-            $stats['partners'] = Partner::count();
-            $stats['admins'] = Admin::count();
-            
+            // Statistik total data
+            $stats = [
+                'services'  => Service::count(),
+                'news'      => News::count(),
+                'galleries' => Gallery::count(),
+                'partners'  => Partner::count(),
+            ];
+
+            // Ambil 5 data terbaru
             $recentServices = Service::latest()->take(5)->get();
-            $recentNews = News::latest()->take(5)->get();
+            $recentNews     = News::latest()->take(5)->get();
         } catch (\Exception $e) {
-            // Handle case where tables don't exist yet
+            Log::error('Dashboard error: ' . $e->getMessage());
+
+            // Jika ada error, tampilkan data default agar halaman tetap jalan
+            $stats = [
+                'services'  => 0,
+                'news'      => 0,
+                'galleries' => 0,
+                'partners'  => 0,
+            ];
+            $recentServices = collect();
+            $recentNews     = collect();
         }
-        
+
+        // Pastikan variabel selalu ada
+        $recentServices = $recentServices ?? collect();
+        $recentNews = $recentNews ?? collect();
+
+        // Kirim semua variabel ke view
         return view('admin.dashboard', compact('stats', 'recentServices', 'recentNews'));
     }
 }

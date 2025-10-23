@@ -1,16 +1,19 @@
-/* Frontend CSS for BBSPJIKKP Website */
+/* Frontend CSS for BBSPJIKKP Website - Modern & Professional */
 
 /* Global Styles */
 :root {
-    --primary-color: #007bff;
+    --primary-color: #0d6efd;
     --secondary-color: #6c757d;
     --success-color: #28a745;
     --danger-color: #dc3545;
     --warning-color: #ffc107;
     --info-color: #17a2b8;
     --light-color: #f8f9fa;
-    --dark-color: #343a40;
+    --dark-color: #212529;
     --font-family: 'Inter', sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
 }
 
 * {
@@ -23,6 +26,7 @@ body {
     font-family: var(--font-family);
     line-height: 1.6;
     color: var(--dark-color);
+    background-color: #ffffff;
 }
 
 /* Header Styles */
@@ -30,112 +34,44 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 .top-bar {
     font-size: 0.9rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
 }
 
 .navbar-brand .logo-icon {
     font-size: 2rem;
+    color: var(--primary-color);
 }
 
 .navbar-brand .logo-text h4 {
     font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.navbar-brand .logo-text small {
+    color: var(--secondary-color);
+    font-size: 0.85rem;
 }
 
 .navbar-nav .nav-link {
     font-weight: 500;
     padding: 0.75rem 1rem;
-    transition: color 0.3s ease;
+    transition: var(--transition);
+    color: var(--dark-color);
+    position: relative;
 }
 
 .navbar-nav .nav-link:hover {
     color: var(--primary-color) !important;
 }
 
-/* Mega Menu Styles */
-.mega-menu {
-    width: 100%;
-    max-width: 1200px;
-    left: 50%;
-    transform: translateX(-50%);
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-}
-
-.dropdown-item-group {
-    padding: 0.5rem 0;
-}
-
-.dropdown-item-group .dropdown-header {
-    color: var(--primary-color);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
-}
-
-.dropdown-item-group .dropdown-item {
-    padding: 0.5rem 0;
-    color: var(--dark-color);
-    transition: color 0.3s ease, padding-left 0.3s ease;
-}
-
-.dropdown-item-group .dropdown-item:hover {
-    background: none;
-    color: var(--primary-color);
-    padding-left: 1rem;
-}
-
-/* Hero Section */
-.hero-section {
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-slide {
-    position: relative;
-    background-attachment: fixed;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
-
-.hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.hero-subtitle {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-/* Section Styles */
-.section-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--dark-color);
-    margin-bottom: 1rem;
-}
-
-.section-subtitle {
-    color: var(--secondary-color);
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-}
-
-.section-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+.navbar-nav .nav-link.active {
+    color: var(--primary-color) !important;
 }
 
 /* Card Styles */
@@ -143,16 +79,18 @@ body {
 .info-card,
 .news-card {
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
     overflow: hidden;
+    background: white;
+    height: 100%;
 }
 
 .service-card:hover,
 .info-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .service-icon {
@@ -172,51 +110,135 @@ body {
     border-radius: 25px;
     font-weight: 500;
     padding: 0.75rem 2rem;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
 }
 
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
-    border: none;
+    color: white;
 }
 
 .btn-primary:hover {
     background: linear-gradient(135deg, #0056b3 0%, var(--primary-color) 100%);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(13, 110, 253, 0.3);
 }
 
 .btn-outline-primary {
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
+    background: transparent;
 }
 
 .btn-outline-primary:hover {
     background: var(--primary-color);
-    border-color: var(--primary-color);
+    color: white;
     transform: translateY(-2px);
+}
+
+/* Section Styles */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), #0056b3);
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(13,110,253,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* News Section */
 .news-section {
     background: var(--light-color);
+    padding: 80px 0;
 }
 
 .featured-news-card {
-    border-radius: 15px;
+    border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
     background: white;
+    transition: var(--transition);
+}
+
+.featured-news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .news-image img {
     width: 100%;
-    height: 300px;
+    height: 250px;
     object-fit: cover;
 }
 
 .news-content {
-    padding: 1.5rem;
+    padding: 2rem;
 }
 
 .news-meta {
@@ -253,41 +275,25 @@ body {
 .news-excerpt {
     color: var(--secondary-color);
     margin-bottom: 1.5rem;
-}
-
-.news-item-card {
-    background: white;
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.news-item-card:hover {
-    transform: translateY(-3px);
-}
-
-.news-thumbnail img {
-    width: 100%;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
+    line-height: 1.6;
 }
 
 /* Partners Section */
 .partners-section {
-    background: var(--light-color);
+    background: white;
+    padding: 80px 0;
 }
 
 .partner-logo {
     text-align: center;
-    padding: 1rem;
+    padding: 2rem;
+    transition: var(--transition);
 }
 
 .partner-logo img {
     max-height: 80px;
     filter: grayscale(100%);
-    transition: all 0.3s ease;
+    transition: var(--transition);
 }
 
 .partner-logo:hover img {
@@ -298,6 +304,7 @@ body {
 /* CTA Section */
 .cta-section {
     background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+    padding: 80px 0;
     position: relative;
     overflow: hidden;
 }
@@ -309,40 +316,49 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.1;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+    opacity: 0.3;
 }
 
 .cta-title {
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
     position: relative;
     z-index: 2;
 }
 
 .cta-description {
+    font-size: 1.2rem;
+    color: white;
+    opacity: 0.9;
+    margin-bottom: 2rem;
     position: relative;
     z-index: 2;
-    opacity: 0.9;
 }
 
 /* Footer */
 .footer {
     background: var(--dark-color);
+    padding: 60px 0 30px;
 }
 
 .footer-brand .logo-icon {
     font-size: 2rem;
+    color: var(--primary-color);
 }
 
 .footer-brand .logo-text h5 {
     font-size: 1.3rem;
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
 .footer h6 {
     color: var(--primary-color);
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .footer .list-unstyled li {
@@ -351,7 +367,8 @@ body {
 
 .footer .list-unstyled a {
     color: #adb5bd;
-    transition: color 0.3s ease;
+    transition: var(--transition);
+    text-decoration: none;
 }
 
 .footer .list-unstyled a:hover {
@@ -366,106 +383,53 @@ body {
     text-align: center;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+    color: white;
+    transition: var(--transition);
+    margin-right: 10px;
 }
 
 .social-links a:hover {
     background: var(--primary-color);
     transform: translateY(-3px);
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.animate-fade-in {
-    animation: fadeIn 1s ease-in-out;
-}
-
-.animate-fade-in-delay {
-    animation: fadeIn 1s ease-in-out 0.3s both;
-}
-
-.animate-fade-in-delay-2 {
-    animation: fadeIn 1s ease-in-out 0.6s both;
-}
-
-.animate-slide-in-left {
-    animation: slideInLeft 1s ease-in-out;
-}
-
-.animate-slide-in-right {
-    animation: slideInRight 1s ease-in-out;
+    color: white;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-    .mega-menu {
-        max-width: 100%;
-        left: 0;
-        transform: none;
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
     }
 }
 
 @media (max-width: 768px) {
     .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
         font-size: 1.8rem;
     }
-    
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.5rem;
-    }
-    
+
     .navbar-brand .logo-text h4 {
         font-size: 1.2rem;
     }
-    
+
     .navbar-brand .logo-text small {
         font-size: 0.7rem;
     }
-    
-    .mega-menu {
-        padding: 1rem;
-    }
-    
+
     .cta-title {
-        font-size: 1.4rem;
+        font-size: 2rem;
     }
-    
+
     .btn {
         padding: 0.6rem 1.5rem;
         font-size: 0.9rem;
@@ -474,25 +438,45 @@ body {
 
 @media (max-width: 576px) {
     .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
         font-size: 1.5rem;
     }
-    
-    .section-title {
-        font-size: 1.3rem;
-    }
-    
+
     .service-icon,
     .info-icon {
         font-size: 2rem;
     }
-    
+
     .news-title {
         font-size: 1.2rem;
     }
-    
+
     .partner-logo img {
         max-height: 60px;
     }
+}
+
+/* Utility Classes */
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+}
+
+.shadow-custom {
+    box-shadow: var(--box-shadow);
+}
+
+.border-radius-custom {
+    border-radius: var(--border-radius);
 }
 
 /* Loading Animation */
@@ -526,8 +510,8 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    transition: var(--transition);
     z-index: 1000;
 }
 
@@ -540,26 +524,6 @@ body {
     display: flex;
 }
 
-/* Utility Classes */
-.text-gradient {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.bg-gradient-primary {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
-}
-
-.shadow-custom {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.border-radius-custom {
-    border-radius: 15px;
-}
-
 /* Print Styles */
 @media print {
     .header,
@@ -568,12 +532,12 @@ body {
     .scroll-to-top {
         display: none !important;
     }
-    
+
     body {
         font-size: 12pt;
         line-height: 1.4;
     }
-    
+
     .section-title {
         font-size: 18pt;
         margin-bottom: 10pt;

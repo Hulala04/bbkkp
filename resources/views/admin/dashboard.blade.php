@@ -485,29 +485,61 @@
                     <div class="recent-activity">
                         <h5 class="chart-title">Aktivitas Terbaru</h5>
 
-                        @foreach ($recentServices as $service)
+                        @if(isset($recentServices) && $recentServices->count() > 0)
+                            @foreach ($recentServices as $service)
+                                <div class="activity-item">
+                                    <div class="activity-icon primary" style="background: var(--primary-color);">
+                                        <i class="fas fa-cogs"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <div class="activity-title">
+                                            <a href="{{ route('services.show', $service->slug) }}" class="text-decoration-none text-dark">
+                                                {{ $service->name }}
+                                            </a>
+                                        </div>
+                                        <div class="activity-time">{{ $service->created_at->diffForHumans() }}</div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
                             <div class="activity-item">
                                 <div class="activity-icon primary" style="background: var(--primary-color);">
-                                    <i class="fas fa-cogs"></i>
+                                    <i class="fas fa-info-circle"></i>
                                 </div>
                                 <div class="activity-content">
-                                    <div class="activity-title">{{ $service->name }}</div>
-                                    <div class="activity-time">{{ $service->created_at->diffForHumans() }}</div>
+                                    <div class="activity-title">Belum ada layanan</div>
+                                    <div class="activity-time">Silakan tambahkan layanan baru</div>
                                 </div>
                             </div>
-                        @endforeach
+                        @endif
 
-                        @foreach ($recentNews as $news)
+                        @if(isset($recentNews) && $recentNews->count() > 0)
+                            @foreach ($recentNews as $news)
+                                <div class="activity-item">
+                                    <div class="activity-icon success" style="background: var(--success-color);">
+                                        <i class="fas fa-newspaper"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <div class="activity-title">
+                                            <a href="{{ route('news.show', $news->slug) }}" class="text-decoration-none text-dark">
+                                                {{ $news->title }}
+                                            </a>
+                                        </div>
+                                        <div class="activity-time">{{ $news->created_at->diffForHumans() }}</div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
                             <div class="activity-item">
                                 <div class="activity-icon success" style="background: var(--success-color);">
-                                    <i class="fas fa-newspaper"></i>
+                                    <i class="fas fa-info-circle"></i>
                                 </div>
                                 <div class="activity-content">
-                                    <div class="activity-title">{{ $news->title }}</div>
-                                    <div class="activity-time">{{ $news->created_at->diffForHumans() }}</div>
+                                    <div class="activity-title">Belum ada berita</div>
+                                    <div class="activity-time">Silakan tambahkan berita baru</div>
                                 </div>
                             </div>
-                        @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

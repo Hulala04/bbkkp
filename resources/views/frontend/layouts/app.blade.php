@@ -19,58 +19,204 @@
     <!-- Custom CSS -->
     <link href="{{ asset('css/frontend.css') }}" rel="stylesheet">
 
+
+
     <style>
-        /* Mega Menu Styling */
+        /* === Dropdown Menu Sederhana untuk Semua Menu === */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #e9ecef;
+            min-width: 200px;
+        }
+
+        /* Mega menu khusus untuk Layanan */
         .mega-menu {
-            padding: 25px;
-            border: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            opacity: 0;
+            visibility: hidden;
+            min-width: 1000px;
+            max-width: 1200px;
+            background: #ffffff;
             border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 1px solid #e9ecef;
+        }
+
+        /* Saat diklik, menu muncul langsung */
+        .dropdown-menu.show,
+        .mega-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(0, 0);
+        }
+
+        .mega-menu.show {
+            transform: translate(-50%, 0);
+        }
+
+        /* Supaya klik di luar menutup dropdown */
+        .nav-item.dropdown {
+            position: relative;
+        }
+
+        /* Dropdown Menu Styling */
+        .dropdown-menu {
+            padding: 20px 0;
+            margin-top: 5px;
+        }
+
+        .mega-menu {
+            padding: 15px;
             margin-top: 10px;
         }
 
-        .dropdown-item-group {
-            padding: 10px;
-        }
-
-        .dropdown-header {
-            font-size: 14px;
-            font-weight: 600;
-            color: #0d6efd;
-            padding: 8px 0;
-            border-bottom: 2px solid #e9ecef;
-            margin-bottom: 8px;
-            white-space: nowrap;
-        }
-
         .dropdown-item {
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
+            padding: 8px 20px;
+            transition: all 0.2s ease;
             font-size: 14px;
-            color: #333;
-            white-space: nowrap;
+            color: #495057;
+            display: block;
+            text-decoration: none;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
         }
 
         .dropdown-item:hover {
             background-color: rgba(13, 110, 253, 0.08);
             color: #0d6efd;
-            padding-left: 16px;
+            text-decoration: none;
         }
 
-        .navbar-nav .dropdown-menu {
-            animation: fadeInDown 0.3s ease-in-out;
+        /* Mega Menu Styling - Kompak dan Rapi */
+        .dropdown-item-group {
+            padding: 12px;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
+        .dropdown-item-group:hover {
+            background-color: #ffffff;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-header {
+            font-size: 13px;
+            font-weight: 600;
+            color: #0d6efd;
+            padding: 6px 0;
+            border-bottom: 1px solid #e3f2fd;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dropdown-item {
+            padding: 6px 10px;
+            transition: all 0.2s ease;
+            font-size: 12px;
+            color: #495057;
+            white-space: nowrap;
+            display: block;
+            text-decoration: none;
+            margin-bottom: 4px;
+            border-radius: 4px;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(13, 110, 253, 0.08);
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        /* Hover effect untuk nav link */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #0d6efd;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 1200px) {
+            .mega-menu {
+                min-width: 800px;
+                left: 0;
+                transform: translate(0, 0);
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .mega-menu.show {
+                transform: translate(0, 0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mega-menu {
+                min-width: 100%;
+                left: 0;
+                right: 0;
+                transform: translate(0, 0);
+                padding: 20px;
+            }
+
+            .mega-menu.show {
+                transform: translate(0, 0);
+            }
+
+            .dropdown-menu {
+                min-width: 100%;
+                left: 0;
+                right: 0;
+            }
+
+            .dropdown-item-group {
+                padding: 8px;
+                margin-bottom: 6px;
+            }
+
+            .dropdown-header {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .dropdown-item {
+                padding: 4px 8px;
+                font-size: 11px;
+                margin-bottom: 3px;
             }
         }
     </style>
@@ -152,7 +298,7 @@
                                 data-bs-toggle="dropdown">
                                 {{ __('Layanan') }}
                             </a>
-                            <div class="dropdown-menu mega-menu" style="min-width: 800px;">
+                            <div class="dropdown-menu mega-menu" style="min-width: 700px;">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-3">
@@ -162,13 +308,13 @@
                                                 </h6>
                                                 <a class="dropdown-item" href="#">{{ __('Lihat Detail') }}</a>
                                             </div>
-                                            <div class="dropdown-item-group mt-3">
+                                            <div class="dropdown-item-group mt-2">
                                                 <h6 class="dropdown-header">
                                                     <i class="fas fa-cog me-2"></i>{{ __('Kalibrasi') }}
                                                 </h6>
                                                 <a class="dropdown-item" href="#">{{ __('Lihat Detail') }}</a>
                                             </div>
-                                            <div class="dropdown-item-group mt-3">
+                                            <div class="dropdown-item-group mt-2">
                                                 <h6 class="dropdown-header">
                                                     <i class="fas fa-check-circle me-2"></i>{{ __('Inspeksi') }}
                                                 </h6>
@@ -208,7 +354,7 @@
                                                     href="#">{{ __('Penyusunan Dokumen') }}</a>
                                             </div>
 
-                                            <div class="dropdown-item-group mt-3">
+                                            <div class="dropdown-item-group mt-2">
                                                 <h6 class="dropdown-header">
                                                     <i
                                                         class="fas fa-check-double me-2"></i>{{ __('Verifikasi dan Validasi') }}
@@ -227,7 +373,7 @@
                                                 <a class="dropdown-item" href="#">{{ __('Pengujian') }}</a>
                                             </div>
 
-                                            <div class="dropdown-item-group mt-3">
+                                            <div class="dropdown-item-group mt-2">
                                                 <h6 class="dropdown-header">
                                                     <i
                                                         class="fas fa-graduation-cap me-2"></i>{{ __('Pelatihan Teknis') }}
@@ -235,7 +381,7 @@
                                                 <a class="dropdown-item" href="#">{{ __('Lihat Detail') }}</a>
                                             </div>
 
-                                            <div class="dropdown-item-group mt-3">
+                                            <div class="dropdown-item-group mt-2">
                                                 <h6 class="dropdown-header">
                                                     <i
                                                         class="fas fa-industry me-2"></i>{{ __('Produsen Bahan Acuan') }}
@@ -243,7 +389,7 @@
                                                 <a class="dropdown-item" href="#">{{ __('Lihat Detail') }}</a>
                                             </div>
 
-                                            <div class="dropdown-item-group mt-3">
+                                            <div class="dropdown-item-group mt-2">
                                                 <h6 class="dropdown-header">
                                                     <i class="fas fa-book me-2"></i>{{ __('Edukasi') }}
                                                 </h6>
@@ -291,7 +437,7 @@
                                 <li><a class="dropdown-item" href="#"><i
                                             class="fas fa-info-circle me-2"></i>{{ __('Keterbukaan Informasi Publik') }}</a>
                                 </li>
-                                <li><a class="dropdown-item" href="#"><i
+                                <li><a class="dropdown-item" href="{{ route('news.index') }}"><i
                                             class="fas fa-newspaper me-2"></i>BBSPJIKKP News</a></li>
                                 <li><a class="dropdown-item" href="#"><i
                                             class="fas fa-book-open me-2"></i>{{ __('Publikasi') }}</a></li>
